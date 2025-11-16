@@ -74,20 +74,34 @@ GitHub Repo:
 git clone https://github.com/adarshjaiswal-clushXD/BioData-Manager
 cd BioData-Manager
 
+2️⃣ Install Dependencies
+
+npm install
+
+3️⃣ Start the Server
+
+npm start
+
+4️⃣ Open in Browser
+
+Go to:
+
+http://localhost:3000/
+
 ---
 
-🤝 Contributing
+##🤝 Contributing
 
 Feel free to fork the project, add improvements, and create pull requests!
 
 
 ---
 
-📄 License
+##📄 License
 
 MIT License  
 © [2025] [ Catalyst Coders && Quantum Coders ⚡⚡]
 
 ---
 
-⭐ If this project helped you, don't forget to star the repo!
+##⭐ If this project helped you, don't forget to star the repo!
