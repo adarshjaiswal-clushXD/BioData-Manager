@@ -66,27 +66,29 @@ Visit the running app here:
 ```bash
 git clone https://github.com/adarshjaiswal-clushXD/BioData-Manager
 cd BioData-Manager
+```
 
 2️⃣ Install Dependencies
-
+```bash
 npm install
+```
 
 3️⃣ Start the Server
-
+```bash
 npm start
+```
 
 4️⃣ Open in Browser
 
 Go to:
-
+```bash
 http://localhost:3000/
-
+```
 ---
 
 ## 🤝 Contributing
 
 Feel free to fork the project, add improvements, and create pull requests!
-
 
 ---
 
