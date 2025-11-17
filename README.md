@@ -43,7 +43,7 @@ It is beginner-friendly and easy to understand for students and developers who a
 
 ## 🌐 Deployed Project
 
-🔗 **Live Demo:** [BioData Manager](https://loan-calculator-ocfz.onrender.com)
+🔗 **Live Demo:** [BioData Manager](https://biodata-manager.onrender.com/)
 
 ---
 
