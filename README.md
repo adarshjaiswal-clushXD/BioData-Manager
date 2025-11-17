@@ -1,7 +1,7 @@
 # BioData Manager
 
 A simple and clean web application to **create, store, and manage biodata** efficiently.  
-The project uses **HTML, CSS, JavaScript, Node.js, and Python** to build a lightweight data-management system that can be used for forms, small databases, or college-level projects.
+The project uses **HTML, CSS, JavaScript, and Python** to build a lightweight data-management system that can be used for forms, small databases, or college-level projects.
 
 ---
 
@@ -11,8 +11,7 @@ BioData Manager is designed to help users quickly submit their biodata and store
 The system uses:
 
 - **Frontend:** HTML, CSS, JavaScript  
-- **Backend:** Node.js  
-- **Python Script:** For optional data handling / processing  
+- **Backend:** Python  
 - **Deployment:** Render (Live hosting)
 
 It is beginner-friendly and easy to understand for students and developers who are learning full-stack basics.
@@ -36,7 +35,7 @@ It is beginner-friendly and easy to understand for students and developers who a
 
 - **Minimal & clean UI**
 - **Fast form submission**
-- **Lightweight Node.js backend**
+- **Lightweight Python backend**
 - **Easy to modify and extend**
 - **Live hosted — accessible from anywhere**
 
@@ -53,7 +52,7 @@ It is beginner-friendly and easy to understand for students and developers who a
 | Layer | Technology |
 |------|------------|
 | **Frontend** | HTML, CSS, JavaScript |
-| **Backend** | Node.js |
+| **Backend** | Python |
 | **Scripting / Logic** | Python |
 | **Hosting** | Render |
 
