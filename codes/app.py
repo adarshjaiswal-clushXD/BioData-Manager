@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, send_file
 from flask_cors import CORS
 from pymongo import MongoClient
 from bson import ObjectId
@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)  # Enable CORS for frontend communication
 
 # MongoDB Atlas Connection
@@ -17,10 +17,30 @@ client = MongoClient(MONGODB_URI)
 db = client['student_biodata_db']
 students_collection = db['students']
 
-# Serve HTML frontend
+# Serve HTML frontend pages
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    return app.send_static_file('index.html')
+
+@app.route('/index.html')
+def serve_index():
+    return app.send_static_file('index.html')
+
+@app.route('/add.html')
+def serve_add():
+    return app.send_static_file('add.html')
+
+@app.route('/view.html')
+def serve_view():
+    return app.send_static_file('view.html')
+
+@app.route('/edit.html')
+def serve_edit():
+    return app.send_static_file('edit.html')
+
+@app.route('/delete.html')
+def serve_delete():
+    return app.send_static_file('delete.html')
 
 # API Routes
 
@@ -31,7 +51,7 @@ def add_student():
         data = request.json
         
         # Validate required fields
-        required_fields = ['name', 'father', 'mother', 'marks10', 'marks12', 'school10', 'school12']
+        required_fields = ['name', 'college', 'father', 'mother', 'marks10', 'marks12', 'school10', 'school12']
         for field in required_fields:
             if field not in data or not data[field]:
                 return jsonify({'error': f'{field} is required'}), 400
@@ -44,10 +64,11 @@ def add_student():
         # Insert student data
         student = {
             'name': data['name'],
+            'college': data['college'],
             'father': data['father'],
             'mother': data['mother'],
-            'marks10': int(data['marks10']),
-            'marks12': int(data['marks12']),
+            'marks10': float(data['marks10']),
+            'marks12': float(data['marks12']),
             'school10': data['school10'],
             'school12': data['school12']
         }
@@ -79,6 +100,22 @@ def get_student(name):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/students/college/<college_name>', methods=['GET'])
+def get_students_by_college(college_name):
+    """Get all students from a specific college"""
+    try:
+        # Case-insensitive search
+        students = list(students_collection.find({'college': {'$regex': f'^{college_name}$', '$options': 'i'}}))
+        
+        # Convert ObjectId to string for all students
+        for student in students:
+            student['_id'] = str(student['_id'])
+        
+        return jsonify(students), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/students/<old_name>', methods=['PUT'])
 def update_student(old_name):
     """Update student data"""
@@ -93,10 +130,11 @@ def update_student(old_name):
         # Prepare update data
         update_data = {
             'name': data.get('name', old_name),
+            'college': data['college'],
             'father': data['father'],
             'mother': data['mother'],
-            'marks10': int(data['marks10']),
-            'marks12': int(data['marks12']),
+            'marks10': float(data['marks10']),
+            'marks12': float(data['marks12']),
             'school10': data['school10'],
             'school12': data['school12']
         }
