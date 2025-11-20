@@ -20,27 +20,30 @@ students_collection = db['students']
 # Serve HTML frontend pages
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    try:
+        return send_from_directory('.', 'index.html')
+    except:
+        return "index.html not found. Make sure all HTML files are in the same folder as app.py"
 
 @app.route('/index.html')
 def serve_index():
-    return app.send_static_file('index.html')
+    return send_from_directory('.', 'index.html')
 
 @app.route('/add.html')
 def serve_add():
-    return app.send_static_file('add.html')
+    return send_from_directory('.', 'add.html')
 
 @app.route('/view.html')
 def serve_view():
-    return app.send_static_file('view.html')
+    return send_from_directory('.', 'view.html')
 
 @app.route('/edit.html')
 def serve_edit():
-    return app.send_static_file('edit.html')
+    return send_from_directory('.', 'edit.html')
 
 @app.route('/delete.html')
 def serve_delete():
-    return app.send_static_file('delete.html')
+    return send_from_directory('.', 'delete.html')
 
 # API Routes
 
